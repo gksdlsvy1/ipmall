@@ -35,7 +35,7 @@
 	</p>
 	<p>
 		<label><spring:message code ="phone"/>:<br>
-		<input type="text" name="phone" id="phone" >
+		<input type="tel" name="phone" id="phone" >
 		</label>
 	</p>
 	<p>
@@ -46,6 +46,19 @@
 	<p>
 		<label><spring:message code ="accountName"/>:<br>
 		<input type="text" name="accountName" id="accountName" >
+		</label>
+	</p>
+		<p>
+		<label><spring:message code ="birthday"/>:<br>
+		<input type="text" name="birthday" id="birthday" >
+		</label>
+	</p>
+		<p>
+		<label><spring:message code ="sex"/>:<br>
+		남성
+		<input type=radio name="sex" value='1' >
+		여성
+		<input type=radio name="sex" value='2' >
 		</label>
 	</p>
 	<input type="submit" value="<spring:message code ="register.btn"/>">

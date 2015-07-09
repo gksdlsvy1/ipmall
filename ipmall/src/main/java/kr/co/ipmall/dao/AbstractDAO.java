@@ -2,6 +2,8 @@ package kr.co.ipmall.dao;
 
 import java.util.List;
 
+import kr.co.ipmall.model.exception.UserNotFoundException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.mybatis.spring.SqlSessionTemplate;

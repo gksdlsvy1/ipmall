@@ -1,8 +1,11 @@
 package kr.co.ipmall.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import kr.co.ipmall.dao.RegisterRequest;
+import kr.co.ipmall.dao.vo.AuthInfo;
+import kr.co.ipmall.dao.vo.User;
 import kr.co.ipmall.service.UserService;
 
 import org.apache.log4j.Logger;
@@ -27,27 +30,34 @@ public class UserController {
 		this.userService = userService;
 	}
 	
-	@RequestMapping(value="/view/index.do")
+	@RequestMapping(value="details.do")
+    public ModelAndView detail() throws Exception{
+    	ModelAndView mv = new ModelAndView("/view/details");
+    	
+    	return mv;
+    }
+	
+	@RequestMapping(value="index.do")
     public ModelAndView index() throws Exception{
     	ModelAndView mv = new ModelAndView("/view/index");
     	
     	return mv;
     }
 	
-	@RequestMapping(value="/view/main.do")
+	@RequestMapping(value="main.do")
     public ModelAndView main() throws Exception{
     	ModelAndView mv = new ModelAndView("/view/main");
     	
     	return mv;
     }
 	
-	@RequestMapping(value="/view/register/customerSignUpStep1.do")
+	@RequestMapping(value="customerSignUpStep1.do")
     public ModelAndView customerSignUpStep1() throws Exception{
     	ModelAndView mv = new ModelAndView("/view/register/customerSignUpStep1");
     	return mv;
     }
 		
-	@RequestMapping(value="/view/register/customerSignUpStep2.do" , method = RequestMethod.POST)
+	@RequestMapping(value="customerSignUpStep2.do" , method = RequestMethod.POST)
 	public ModelAndView customerSignUpStep2(@RequestParam(value = "agree", defaultValue = "false") Boolean agree,
 			Model model) throws Exception{
 		ModelAndView mv;
@@ -59,13 +69,13 @@ public class UserController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/view/register/customerSignUpStep2", method = RequestMethod.GET)
+	@RequestMapping(value = "customerSignUpStep2", method = RequestMethod.GET)
 	public ModelAndView customerHandleStep2Get() throws Exception{
 		ModelAndView mv = new ModelAndView("/view/register/customerSignUpStep2");
 		return mv;
 	}
 	
-	@RequestMapping(value="/view/register/customerSignUpStep3.do" , method = RequestMethod.GET)
+	@RequestMapping(value="customerSignUpStep3.do" , method = RequestMethod.GET)
 	public ModelAndView customerSignUpStep2Get() throws Exception{
 		ModelAndView mv;
 		if(isException) {
@@ -76,17 +86,21 @@ public class UserController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/view/register/customerSignUpStep3.do" , method = RequestMethod.POST)
+	@RequestMapping(value="customerSignUpStep3.do" , method = RequestMethod.POST)
 	public ModelAndView customerSignUpStep3(RegisterRequest req, Errors errors) throws Exception{
 		new RegisterRequestValidator().validate(req, errors);
 		ModelAndView mv;
 		if(errors.hasErrors()) {
+			System.out.println(errors);
 			mv = new ModelAndView("/view/register/customerSignUpStep2");
 			return mv;
 		}
 		try{
+			// 객체 생성시 구매자, 활동 으로 저장
+			req.setLevel(User.CUSTOMER);
+			req.setStatus(User.ACTIVE);
 			userService.insertUser(req);
-			mv = new ModelAndView("/view/register/customerSignUpStep3");
+			mv = new ModelAndView("/view/index");
 			return mv;
 		} catch(kr.co.ipmall.model.exception.AlreadyExistingUserException ex){
 			/*model.addAttribute("msg", "아이디 중복"); 
@@ -95,6 +109,33 @@ public class UserController {
 			mv = new ModelAndView("/view/register/customerSignUpStep2");
 			return mv;
 		}
+	}
+	
+	@RequestMapping(value="deleteUser.do")
+	public ModelAndView deleteUserInfo(HttpSession session) throws Exception{
+		ModelAndView mv;
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		userService.deleteUser(authInfo.getEmail());
+		session.invalidate();
+		mv = new ModelAndView("/view/index");
+		return mv;
+	}
+	
+	@RequestMapping(value="changeUserInfo.do")
+	public ModelAndView changeUserInfo() throws Exception{
+		ModelAndView mv;
+		mv = new ModelAndView("/view/edit/changeUserInfoForm");
+		return mv;
+	}
+	
+	@RequestMapping(value="submitChangeUserInfo.do")
+	public ModelAndView changeUserInfo(RegisterRequest req, HttpSession session) throws Exception{
+		ModelAndView mv;
+		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		req.setEmail(authInfo.getEmail());
+		userService.updateUserInfo(req);
+		mv = new ModelAndView("/view/index");
+		return mv;
 	}
 	
 	

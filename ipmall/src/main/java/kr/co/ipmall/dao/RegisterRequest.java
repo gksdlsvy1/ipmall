@@ -1,5 +1,7 @@
 package kr.co.ipmall.dao;
 
+import java.util.Date;
+
 public class RegisterRequest {
 
 	private String email;
@@ -7,8 +9,16 @@ public class RegisterRequest {
 	private String confirmPassword;
 	private String name;
 	private String phone;
+	private int level;
 	private String accountNum;
 	private String accountName;
+	private int status;
+	private String birthday;
+	private int sex;
+	private String department;
+	private String position;
+	private String address;
+	private String brNumber;
 
 	public String getEmail() {
 		return email;
@@ -69,6 +79,70 @@ public class RegisterRequest {
 
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	public int getSex() {
+		return sex;
+	}
+
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getBrNumber() {
+		return brNumber;
+	}
+
+	public void setBrNumber(String brNumber) {
+		this.brNumber = brNumber;
 	}
 
 }

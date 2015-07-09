@@ -2,19 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user">
-	
-	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT
-			    email,
-			    pw,
-			    name,
-			    phone
-			FROM
-			    user
-		]]>
-	</select>
-	
 	<select id="selectUser" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
@@ -56,25 +43,113 @@
 			    #{password}, 
 			    #{name}, 
 				#{phone},
-				1,
+				#{level},
 				now(),
 				now(),
 				#{account_num},
 				#{account_name},
-				1
+				#{status}
 			)
 		]]>
 	</insert>
 	
-	<update id="updateHitCnt" parameterType="hashmap">
+		<insert id="insertCustomer" parameterType="hashmap">
+		<selectKey keyProperty="customer_no" resultType="int" order="BEFORE">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
+		INSERT INTO customer
+		(
+			customer_no,
+			birthday,
+			sex
+		)
+		VALUES
+		(
+			#{customer_no},
+			#{birthday},
+			#{sex}
+		);
+	</insert>
+	
+		<insert id="insertSeller" parameterType="hashmap">
+		<selectKey keyProperty="seller_no" resultType="int" order="BEFORE">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
+		INSERT INTO seller
+		(
+			seller_no,
+			address,
+			brNumber
+		)
+		VALUES
+		(
+			#{seller_no},
+			#{address},
+			#{brNumber}
+		);
+	</insert>
+	
+		<insert id="insertManager" parameterType="hashmap">
+		<selectKey keyProperty="manager_no" resultType="int" order="BEFORE">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
+		INSERT INTO manager
+		(
+			manager_no,
+			department,
+			position
+		)
+		VALUES
+		(
+			#{manager_no},
+			#{department},
+			#{position}
+		);
+	</insert>
+	
+	<update id="updatePwd" parameterType="hashmap">
 		<![CDATA[
-			UPDATE TB_BOARD 
+			UPDATE user
 			SET
-				HIT_CNT = NVL(HIT_CNT, 0) + 1
+				pw = #{password},
+				update_time = now()
 			WHERE
-				IDX = #{IDX}	
+				email = #{email}	
 		]]>
 	</update>
+	
+		<update id="deleteUser" parameterType="hashmap">
+		<![CDATA[
+			UPDATE user
+			SET
+			    email = 0,
+			    pw = 0,
+			    name = 0,
+			    phone = 0,
+			    level = 0,
+			    create_time = 0,
+			    update_time = now(),
+			    account_num = 0,
+			    account_name = 0,
+			    status = 0
+			WHERE
+				email = #{email}
+		]]>
+	</update>
+	
+	<update id="updateUser" parameterType="hashmap">
+		<![CDATA[
+			UPDATE user
+			SET
+			    phone = #{phone},
+			    update_time = now(),
+			    account_num = #{account_num},
+			    account_name = #{account_name}
+			WHERE
+				email = #{email}
+		]]>
+	</update>
+	
 	
 	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[

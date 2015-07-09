@@ -11,5 +11,12 @@
 	<mvc:annotation-driven />
 
 	<mvc:default-servlet-handler />
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="changePwdForm.do"/>
+			<bean class="kr.co.ipmall.model.interceptor.AuthCheckInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 </beans>

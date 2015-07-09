@@ -1,49 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>회원가입</title>
+<title><spring:message code="member.register"/></title>
 </head>
 <body>
-	<h2>구매자 회원 정보 입력</h2>
+	<h2><spring:message code ="member.info"/></h2>
 	<form  action="sellerSignUpStep3.do"  method="post">
 	<p>
-		<label>이메일:<br>
-		<input type="text" name="email" id="email">
+		<label><spring:message code ="email"/>:<br>
+		<input type="email" name="email" id="email">
+		<form:errors path="email"/>
 		</label>
 	</p>
 	<p>
-		<label>이름:<br>
+		<label><spring:message code ="name"/>:<br>
 		<input type="text" name="name" id="name">
+		<form:errors path="name"/>
 		</label>
 	</p>
 	<p>
-		<label>비밀번호:<br>
+		<label><spring:message code ="password"/>:<br>
 		<input type="password" name="password" id="password">
+		<form:errors path="password"/>
 		</label>
 	</p>
 	<p>
-		<label>비밀번호 확인:<br>
+		<label><spring:message code ="password.confirm"/>:<br>
 		<input type="password" name="confirmPassword" id="confirmPassword">
+		<form:errors path="confirmPassword"/>
 		</label>
 	</p>
 	<p>
-		<label>전화번호:<br>
+		<label><spring:message code ="phone"/>:<br>
 		<input type="text" name="phone" id="phone" >
 		</label>
 	</p>
 	<p>
-		<label>계좌번호:<br>
-		<input type="text" name="account_num" id="account_num" >
+		<label><spring:message code ="accountNum"/>:<br>
+		<input type="text" name="accountNum" id="accountNum" >
 		</label>
 	</p>
 	<p>
-		<label>계좌 사용자 이름:<br>
-		<input type="text" name="account_name" id="account_name" >
+		<label><spring:message code ="accountName"/>:<br>
+		<input type="text" name="accountName" id="accountName" >
 		</label>
 	</p>
-	<input type="submit" value="가입 완료">
+	<p>
+		<label><spring:message code ="address"/>:<br>
+		<input type="text" name="address" id="address" >
+		</label>
+	</p>
+	<p>
+		<label><spring:message code ="brNumber"/>:<br>
+		<input type="text" name="brNumber" id="brNumber" >
+		</label>
+	</p>
+	<input type="submit" value="<spring:message code ="register.btn"/>">
 	</form>
 </body>
 </html>

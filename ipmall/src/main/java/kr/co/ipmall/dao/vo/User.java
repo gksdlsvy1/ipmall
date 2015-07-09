@@ -16,22 +16,28 @@ public class User {
 	private String account_name;
 	private int status;
 	
+	public final static int MANAGER = 1;
+	public final static int CUSTOMER = 2;
+	public final static int SELLER = 3;
+	public final static int ACTIVE = 1;
+	public final static int INACTIVE = 2;
+	
 	public User(){};
 
-	public User(String email, String password, String name, String phone, Date create_time, Date update_time,
-			String account_num, String account_name) {
+	public User(String email, String password, String name, String phone, int level, Date create_time, Date update_time,
+			String account_num, String account_name, int status) {
+		System.out.println("User 생성자");
 		this.email = email;
 		this.password = password;
 		this.name = name;
 		this.phone = phone;
+		this.level = level;
 		this.create_time = create_time;
 		this.update_time = update_time;
 		this.account_num = account_num;
 		this.account_name = account_name;
-		this.level = 1;
-		this.status = 1;
+		this.status = status;
 	}
-	
 
 	public void setUserNo(Long user_no) {
 		this.user_no = user_no;
@@ -152,6 +158,7 @@ public class User {
 	}
 	
 	public boolean matchPassword(String pwd) {
+		System.out.println(this.password);
 		return this.password.equals(pwd);
 	}
 

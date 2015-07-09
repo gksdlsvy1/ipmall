@@ -58,7 +58,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">
-						<div class="logo"><a href="index.html"><img src="web/images/logo.png" alt=""/></a></div>
+						<div class="logo"><a href="index.do"><img src="web/images/logo.png" alt=""/></a></div>
 					</div>
 					<div class="col-md-8">					
 	 					<nav class="navbar navbar-default" role="navigation">
@@ -150,144 +150,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						    </div></div></div></div>
 				  </section>		         		       		       
 		</div>
-		<div class="cont span_2_of_3">
-			 <div class="labout span_1_of_a1">
-				<!-- start product_slider -->
-				     <ul id="etalage">
-							<li>
-								<a href="optionallink.html">
-									<img class="etalage_thumb_image" src="web/images/t1.jpg" />
-									<img class="etalage_source_image" src="web/images/t2.jpg" />
-								</a>
-							</li>
-							<li>
-								<img class="etalage_thumb_image" src="web/images/t2.jpg" />
-								<img class="etalage_source_image" src="web/images/t2.jpg" />
-							</li>
-							<li>
-								<img class="etalage_thumb_image" src="web/images/t3.jpg" />
-								<img class="etalage_source_image" src="web/images/t3.jpg" />
-							</li>
-							<li>
-								<img class="etalage_thumb_image" src="web/images/t4.jpg" />
-								<img class="etalage_source_image" src="web/images/t4.jpg" />
-							</li>
-							<li>
-								<img class="etalage_thumb_image" src="web/images/t5.jpg" />
-								<img class="etalage_source_image" src="web/images/t5.jpg" />
-							</li>
-							<li>
-								<img class="etalage_thumb_image" src="web/images/t6.jpg" />
-								<img class="etalage_source_image" src="web/images/t6.jpg" />
-							</li>
-							<li>
-								<img class="etalage_thumb_image" src="web/images/t1.jpg" />
-								<img class="etalage_source_image" src="web/images/t1.jpg" />
-							</li>
-						</ul>
-					
-					
-			<!-- end product_slider -->
-			</div>
-			<div class="cont1 span_2_of_a1 pull-right">
-				<h3 class="m_3">Lorem ipsum dolor sit amet</h3>
-				
-				<div class="price_single">
-							  <span class="reducedfrom">$66.00</span>
-							  <span class="actual">$12.00</span><a href="#">click for offer</a>
-							</div>
-				<ul class="options list-unstyled">
-					<h4 class="m_9">Select a Size</h4>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li><a href="#">9</a></li>
-					<div class="clearfix"></div>
-				</ul>
-				<div class="btn_form">
-				   <form>
-					 <input type="submit" value="buy now" title="">
-				  </form>
-				</div>
-				<ul class="add-to-links list-unstyled">
-    			   <li><img src="web/images/wish.png" alt=""><a href="#">Add to wishlist</a></li>
-    			</ul>
-    			<p class="m_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-    			
-                <div class="social_single">	
-				   <ul list-unstyled>	
-					  <li class="fb"><a href="#"><span> </span></a></li>
-					  <li class="tw"><a href="#"><span> </span></a></li>
-					  <li class="g_plus"><a href="#"><span> </span></a></li>
-					  <li class="rss"><a href="#"><span> </span></a></li>		
-				   </ul>
-			    </div>
-			</div>
-			<div class="clearfix"></div>
-         </div>
-     
-         <div class="nbs-flexisel-container"><div class="nbs-flexisel-inner"><ul id="flexiselDemo3" class="nbs-flexisel-ul" style="left: -195.2px; display: block;">
-			
-			
-			
-			
-			
-		 <li class="nbs-flexisel-item" style="width: 195.2px;"><img src="web/images/pic9.jpg"><div class="grid-flex"><a href="#">Zumba</a><p>Rs 850</p></div></li><li class="nbs-flexisel-item" style="width: 195.2px;"><img src="web/images/pic8.jpg"><div class="grid-flex"><a href="#">Bloch</a><p>Rs 850</p></div></li><li class="nbs-flexisel-item" style="width: 195.2px;"><img src="web/images/pic7.jpg"><div class="grid-flex"><a href="#">Capzio</a><p>Rs 850</p></div></li><li class="nbs-flexisel-item" style="width: 195.2px;"><img src="web/images/pic11.jpg"><div class="grid-flex"><a href="#">Bloch</a><p>Rs 850</p></div></li><li class="nbs-flexisel-item" style="width: 195.2px;"><img src="web/images/pic10.jpg"><div class="grid-flex"><a href="#">Capzio</a><p>Rs 850</p></div></li><li class="nbs-flexisel-item" style="width: 195.2px;"><img src="web/images/pic9.jpg"><div class="grid-flex"><a href="#">Zumba</a><p>Rs 850</p></div></li><li class="nbs-flexisel-item" style="width: 195.2px;"><img src="web/images/pic8.jpg"><div class="grid-flex"><a href="#">Bloch</a><p>Rs 850</p></div></li><li class="nbs-flexisel-item" style="width: 195.2px;"><img src="web/images/pic7.jpg"><div class="grid-flex"><a href="#">Capzio</a><p>Rs 850</p></div></li><li class="nbs-flexisel-item" style="width: 195.2px;"><img src="web/images/pic11.jpg"><div class="grid-flex"><a href="#">Bloch</a><p>Rs 850</p></div></li><li class="nbs-flexisel-item" style="width: 195.2px;"><img src="web/images/pic10.jpg"><div class="grid-flex"><a href="#">Capzio</a><p>Rs 850</p></div></li></ul><div class="nbs-flexisel-nav-left" style="top: 74px;"></div><div class="nbs-flexisel-nav-right" style="top: 74px;"></div></div></div>
-	    <script type="text/javascript">
-		 $(window).load(function() {
-			$("#flexiselDemo1").flexisel();
-			$("#flexiselDemo2").flexisel({
-				enableResponsiveBreakpoints: true,
-		    	responsiveBreakpoints: { 
-		    		portrait: { 
-		    			changePoint:480,
-		    			visibleItems: 1
-		    		}, 
-		    		landscape: { 
-		    			changePoint:640,
-		    			visibleItems: 2
-		    		},
-		    		tablet: { 
-		    			changePoint:768,
-		    			visibleItems: 3
-		    		}
-		    	}
-		    });
-		
-			$("#flexiselDemo3").flexisel({
-				visibleItems: 5,
-				animationSpeed: 1000,
-				autoPlay: true,
-				autoPlaySpeed: 3000,    		
-				pauseOnHover: true,
-				enableResponsiveBreakpoints: true,
-		    	responsiveBreakpoints: { 
-		    		portrait: { 
-		    			changePoint:480,
-		    			visibleItems: 1
-		    		}, 
-		    		landscape: { 
-		    			changePoint:640,
-		    			visibleItems: 2
-		    		},
-		    		tablet: { 
-		    			changePoint:768,
-		    			visibleItems: 3
-		    		}
-		    	}
-		    });
-		    
-		});
-	</script>
-	<script type="text/javascript" src="web/js/jquery.flexisel.js"></script>
-	 <div class="toogle">
-     	<h3 class="m_3">Product Details</h3>
-     	<p class="m_text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-     </div>					
-	 <div class="toogle">
-     	<h3 class="m_3">Product Reviews</h3>
-     	<p class="m_text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-     </div>
+
      </div>
      <div class="clearfix"></div>
 	 </div>

@@ -6,6 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -38,7 +39,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">
-						<div class="logo"><a href="index.html"><img src="web/images/logo.png" alt=""/></a></div>
+						<div class="logo"><a href="index.do"><img src="web/images/logo.png" alt=""/></a></div>
 					</div>
 					<div class="col-md-8">					
 	 					<nav class="navbar navbar-default" role="navigation">
@@ -78,8 +79,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</nav>
 						<div class="right">
 							<ul class="list-unstyled">
-								<li class="a text-left"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a> $2,534,5435</li>
-								<li><a href="view/main.do"><!-- onclick="window.open('signIn.html','popup','width=300, height=300, menubar=no, status=no, toolbar=no'); "--> Sign In</a></li>
+								<c:if test="${empty authInfo}">
+								<li><a href="main.do"><!-- onclick="window.open('signIn.html','popup','width=300, height=300, menubar=no, status=no, toolbar=no'); "--> Sign In/Up</a></li>
+								</c:if>
+								<c:if test="${!empty authInfo}">
+								<li class="a text-left"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a> $0</li>
+								<li><a href="main.do"><!-- onclick="window.open('signIn.html','popup','width=300, height=300, menubar=no, status=no, toolbar=no'); "--> ${authInfo.name}</a></li>
+								<li><a href="logout.do">Sing Out</a></li>
+								</c:if>
 							</ul>							
 						</div>	
 					</div>
@@ -89,7 +96,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        <div class="form-group" style="width:80%">
 			        <input type="text" class="form-control" placeholder="Search" style="width: 100%">
 			        </div>
-			        <button type="Find" class="btn btn-default">Find</button>
+			        <ul class="list-unstyled">
+			        <li><a href="list.do">Find</a></li>
+			        </ul>
+			        <button type="Find" class="btn btn-default" onclick="list.do">Find</button>
 			    </form> 	
 				</div>
 
@@ -157,7 +167,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					    </div>		
 						<p class="text-center">Big block Lether Bag</p>
 						<h2 class="text-center">$350.00</h2>
-						<p class="text-center"><a href="details.html">Buy</a></p>
+						<p class="text-center"><a href="details.do">Buy</a></p>
                     </div>
 				</div>
 				

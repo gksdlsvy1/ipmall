@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import kr.co.ipmall.dao.RegisterRequest;
+import kr.co.ipmall.dao.vo.User;
 import kr.co.ipmall.service.UserService;
 
 import org.apache.log4j.Logger;
@@ -23,14 +24,14 @@ public class SellerController {
 		this.userService = userService;
 	}
 	
-	@RequestMapping(value="/view/register/sellerSignUpStep1.do")
+	@RequestMapping(value="sellerSignUpStep1.do")
     public ModelAndView sellerSignUpStep1() throws Exception{
     	ModelAndView mv = new ModelAndView("/view/register/sellerSignUpStep1");
     	
     	return mv;
     }
 		
-	@RequestMapping(value="/view/register/sellerSignUpStep2.do" , method = RequestMethod.POST)
+	@RequestMapping(value="sellerSignUpStep2.do" , method = RequestMethod.POST)
 	public ModelAndView sellerSignUpStep2(HttpServletRequest request) throws Exception{
 		String agreeParam = request.getParameter("agree");
 		ModelAndView mv;
@@ -42,19 +43,22 @@ public class SellerController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/view/register/sellerSignUpStep2.do" , method = RequestMethod.GET)
+	@RequestMapping(value="sellerSignUpStep2.do" , method = RequestMethod.GET)
 	public ModelAndView sellerSignUpStep2Get() throws Exception{
 		ModelAndView mv = new ModelAndView("redirect:/view/register/sellerSignUpStep1");
 		return mv;
 	}
 	
-	@RequestMapping(value="/view/register/sellerSignUpStep3.do" , method = RequestMethod.POST)
+	@RequestMapping(value="sellerSignUpStep3.do" , method = RequestMethod.POST)
 	public ModelAndView sellerSignUpStep3(RegisterRequest req) throws Exception{
 		ModelAndView mv;
+		/// 나중에 이부분 판매자 회원 가입할때 error 처리 추가해야됨(userController 참조)
 		try{
-			System.out.println(req.getEmail());
+			// 객체 생성시 판매자, 활동 으로 저장
+			req.setLevel(User.SELLER);
+			req.setStatus(User.ACTIVE);
 			userService.insertUser(req);
-			mv = new ModelAndView("/view/register/sellerSignUpStep3");
+			mv = new ModelAndView("/view/index");
 			return mv;
 		} catch(kr.co.ipmall.model.exception.AlreadyExistingUserException ex) {
 			mv = new ModelAndView("/view/register/sellerSignUpStep2");
