@@ -1,7 +1,8 @@
 package kr.co.ipmall.service;
 
 import kr.co.ipmall.dao.RegisterRequest;
-import kr.co.ipmall.dao.vo.AuthInfo;
+import kr.co.ipmall.vo.AuthInfo;
+import kr.co.ipmall.vo.User;
 
 public interface UserService {
 
@@ -19,5 +20,5 @@ public interface UserService {
 	void insertUser(RegisterRequest req) throws Exception;
 	void deleteUser(String email) throws Exception;
 	void updateUserInfo(RegisterRequest req) throws Exception;
-
+	User authenticate(String email, String password) throws Exception;
 }

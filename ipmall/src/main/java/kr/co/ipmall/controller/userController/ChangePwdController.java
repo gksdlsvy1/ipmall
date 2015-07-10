@@ -1,11 +1,12 @@
-package kr.co.ipmall.controller;
+package kr.co.ipmall.controller.userController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import kr.co.ipmall.dao.vo.AuthInfo;
 import kr.co.ipmall.model.exception.IdPasswordNotMatchingException;
 import kr.co.ipmall.service.ChangePasswordService;
+import kr.co.ipmall.vo.AuthInfo;
+import kr.co.ipmall.vo.User;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -41,9 +42,9 @@ public class ChangePwdController {
 			mv = new ModelAndView("/view/edit/changePwdForm");
 			return mv;
 		}
-		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		User user = (User) session.getAttribute("userSession");
 		try{
-			changePasswordService.changePassword(authInfo.getEmail(), pwdCmd.getCurrentPassword(), pwdCmd.getNewPassword());
+			changePasswordService.changePassword(user.getEmail(), pwdCmd.getCurrentPassword(), pwdCmd.getNewPassword());
 			mv = new ModelAndView("/view/index");
 			return mv;
 		} catch(IdPasswordNotMatchingException e) {

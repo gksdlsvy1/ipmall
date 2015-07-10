@@ -1,4 +1,4 @@
-package kr.co.ipmall.dao.vo;
+package kr.co.ipmall.vo;
 
 public class AuthInfo {
 	

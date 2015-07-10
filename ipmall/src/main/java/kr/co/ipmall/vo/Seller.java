@@ -1,4 +1,4 @@
-package kr.co.ipmall.dao.vo;
+package kr.co.ipmall.vo;
 
 import java.util.Date;
 

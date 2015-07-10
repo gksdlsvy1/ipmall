@@ -1,6 +1,5 @@
 package kr.co.ipmall.dao;
 
-import java.util.Date;
 
 public class RegisterRequest {
 

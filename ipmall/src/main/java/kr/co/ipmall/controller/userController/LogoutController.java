@@ -1,4 +1,4 @@
-package kr.co.ipmall.controller;
+package kr.co.ipmall.controller.userController;
 
 import javax.servlet.http.HttpSession;
 

@@ -79,12 +79,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</nav>
 						<div class="right">
 							<ul class="list-unstyled">
-								<c:if test="${empty authInfo}">
+								<c:if test="${empty userSession}">
 								<li><a href="main.do"><!-- onclick="window.open('signIn.html','popup','width=300, height=300, menubar=no, status=no, toolbar=no'); "--> Sign In/Up</a></li>
 								</c:if>
-								<c:if test="${!empty authInfo}">
+								<c:if test="${!empty userSession}">
 								<li class="a text-left"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a> $0</li>
-								<li><a href="main.do"><!-- onclick="window.open('signIn.html','popup','width=300, height=300, menubar=no, status=no, toolbar=no'); "--> ${authInfo.name}</a></li>
+								<li><a href="main.do"><!-- onclick="window.open('signIn.html','popup','width=300, height=300, menubar=no, status=no, toolbar=no'); "--> ${userSession.name}</a></li>
 								<li><a href="logout.do">Sing Out</a></li>
 								</c:if>
 							</ul>							
@@ -96,10 +96,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        <div class="form-group" style="width:80%">
 			        <input type="text" class="form-control" placeholder="Search" style="width: 100%">
 			        </div>
-			        <ul class="list-unstyled">
+			       <!--   <ul class="list-unstyled">
 			        <li><a href="list.do">Find</a></li>
-			        </ul>
-			        <button type="Find" class="btn btn-default" onclick="list.do">Find</button>
+			        </ul>-->
+			        <button type="Find" class="btn btn-default" onclick="list">Find</button>
 			    </form> 	
 				</div>
 

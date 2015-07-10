@@ -6,10 +6,10 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import kr.co.ipmall.dao.UserDAO;
-import kr.co.ipmall.dao.vo.AuthInfo;
-import kr.co.ipmall.dao.vo.User;
 import kr.co.ipmall.model.exception.IdPasswordNotMatchingException;
 import kr.co.ipmall.model.exception.UserNotFoundException;
+import kr.co.ipmall.vo.AuthInfo;
+import kr.co.ipmall.vo.User;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;

@@ -1,16 +1,18 @@
 package kr.co.ipmall.service;
 
 import java.util.Date;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import kr.co.ipmall.dao.RegisterRequest;
 import kr.co.ipmall.dao.UserDAO;
-import kr.co.ipmall.dao.vo.AuthInfo;
-import kr.co.ipmall.dao.vo.Customer;
-import kr.co.ipmall.dao.vo.Manager;
-import kr.co.ipmall.dao.vo.Seller;
-import kr.co.ipmall.dao.vo.User;
+import kr.co.ipmall.model.exception.IdPasswordNotMatchingException;
+import kr.co.ipmall.vo.AuthInfo;
+import kr.co.ipmall.vo.Customer;
+import kr.co.ipmall.vo.Manager;
+import kr.co.ipmall.vo.Seller;
+import kr.co.ipmall.vo.User;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -56,12 +58,17 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		
 		// select 유저를 통해 DB에 해당 email이 있는지 검색
-		User user = userDAO.selectUser(req);	
-
-		// email이 있는 경우 exception 처리
-		if(user != null)
-			throw new kr.co.ipmall.model.exception.AlreadyExistingUserException("dup email " + user.getEmail());
+		Map<String, Object> map = userDAO.selectUser(req);	
 		
+
+		
+		// email이 있는 경우 exception 처리
+		if(map.get("email") != null)
+			throw new kr.co.ipmall.model.exception.AlreadyExistingUserException("dup email " + map.get("email"));
+		System.out.println("rerwerr");
+		/*
+		if(((Seller)user).getBrNumber() == req.getBrNumber())
+			throw new kr.co.ipmall.model.exception.AlreadyExistingUserException("dup email " + user.getEmail());*/
 		User newUser;
 		
 		// 각 유저 level 별로 구매자, 판매자, 관리자를 나누어 newUser 객체 초기화
@@ -81,8 +88,7 @@ public class UserServiceImpl implements UserService{
 					req.getAccountNum(), req.getAccountName(),req.getStatus(), req.getDepartment(), req.getPosition());
 			
 		}
-		
-		userDAO.insertUser(newUser);
+			userDAO.insertUser(newUser);
 			
 	}
 	
@@ -94,6 +100,26 @@ public class UserServiceImpl implements UserService{
 		User user = new Customer(req.getEmail(), req.getPassword(), req.getName(), req.getPhone(), req.getLevel(), new Date(), new Date(),
 				req.getAccountNum(), req.getAccountName(), req.getStatus(), req.getBirthday(), req.getSex());
 		userDAO.updateUser(user);
+	}
+	
+	@SuppressWarnings("unused")
+	public User authenticate(String email, String password) throws Exception{
+
+		// User 객체로 곧바로 받을 수 없기 때문에 user 초기화를 통해 객체 생성
+		Map<String, Object> map = userDAO.selectByEmail(email);
+		User user = new User((String)map.get("email"), (String)map.get("pw"), (String)map.get("name"), (String)map.get("phone"), (int)map.get("level"),(Date)map.get("create_time"), (Date)map.get("update_time"),
+				(String)map.get("account_num"), (String)map.get("account_name"), (int)map.get("status"));
+		
+		// 각 로그인 exception 처리
+		if(user == null){
+			throw new IdPasswordNotMatchingException();
+		}
+		if(!user.matchPassword(password)) {
+			throw new IdPasswordNotMatchingException();
+		}
+		
+		// 이메일, 이름 반환
+		return user;
 	}
 
 }

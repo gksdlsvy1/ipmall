@@ -1,7 +1,7 @@
 package kr.co.ipmall.service;
 
 import kr.co.ipmall.dao.UserDAO;
-import kr.co.ipmall.dao.vo.AuthInfo;
+import kr.co.ipmall.vo.AuthInfo;
 
 
 public interface AuthService {

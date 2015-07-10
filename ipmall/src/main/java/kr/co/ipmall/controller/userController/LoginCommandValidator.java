@@ -1,4 +1,4 @@
-package kr.co.ipmall.controller;
+package kr.co.ipmall.controller.userController;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

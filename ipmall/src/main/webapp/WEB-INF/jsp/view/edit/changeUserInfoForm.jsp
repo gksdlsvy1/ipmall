@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
     <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,17 +13,17 @@
 	<form action="submitChangeUserInfo.do" method="post">
 	<p>
 		<label><spring:message code ="phone"/>:<br>
-		<input type="tel" name="phone" id="phone" >
+		<input type="tel" name="phone" id="phone" placeholder="${userSession.phone}">
 		</label>
 	</p>
 	<p>
 		<label><spring:message code ="accountNum"/>:<br>
-		<input type="text" name="accountNum" id="accountNum" >
+		<input type="text" name="accountNum" id="accountNum" placeholder="${userSession.accountNum}">
 		</label>
 	</p>
 	<p>
 		<label><spring:message code ="accountName"/>:<br>
-		<input type="text" name="accountName" id="accountName" >
+		<input type="text" name="accountName" id="accountName" placeholder="${userSession.accountName}">
 		</label>
 	</p>
 	

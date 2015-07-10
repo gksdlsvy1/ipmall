@@ -4,6 +4,8 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -110,12 +112,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>	
     <div class="single">
          <div class="container">
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
      	    <div class="rsidebar span_1_of_left">
 				   <section class="sky-form">
                    	  <h4>Occasion</h4>
 						<div class="row row1 scroll-pane" style="overflow: hidden; padding: 0px; width: 283px;">
-							
-							
 						 <div class="web/jspContainer" style="width: 283px; height: 200px;"><div class="web/jspPane" style="padding: 20px; top: 0px; left: 0px; width: 243px;"><div class="col col-4">
 								<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Athletic (20)</label>
 							</div><div class="col col-4">

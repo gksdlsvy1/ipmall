@@ -1,17 +1,18 @@
-package kr.co.ipmall.controller;
+package kr.co.ipmall.controller.userController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import kr.co.ipmall.dao.RegisterRequest;
-import kr.co.ipmall.dao.vo.AuthInfo;
-import kr.co.ipmall.dao.vo.User;
 import kr.co.ipmall.service.UserService;
+import kr.co.ipmall.vo.AuthInfo;
+import kr.co.ipmall.vo.User;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -90,6 +91,8 @@ public class UserController {
 	public ModelAndView customerSignUpStep3(RegisterRequest req, Errors errors) throws Exception{
 		new RegisterRequestValidator().validate(req, errors);
 		ModelAndView mv;
+		
+		////////////////////
 		if(errors.hasErrors()) {
 			System.out.println(errors);
 			mv = new ModelAndView("/view/register/customerSignUpStep2");
@@ -114,25 +117,27 @@ public class UserController {
 	@RequestMapping(value="deleteUser.do")
 	public ModelAndView deleteUserInfo(HttpSession session) throws Exception{
 		ModelAndView mv;
-		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
-		userService.deleteUser(authInfo.getEmail());
+		User user = (User) session.getAttribute("userSession");
+		userService.deleteUser(user.getEmail());
 		session.invalidate();
 		mv = new ModelAndView("/view/index");
 		return mv;
 	}
 	
 	@RequestMapping(value="changeUserInfo.do")
-	public ModelAndView changeUserInfo() throws Exception{
+	public ModelAndView changeUserInfo(@ModelAttribute("req") User user, HttpSession session) throws Exception{
 		ModelAndView mv;
+		
+		user = (User)session.getAttribute("userSession");
 		mv = new ModelAndView("/view/edit/changeUserInfoForm");
 		return mv;
 	}
 	
 	@RequestMapping(value="submitChangeUserInfo.do")
-	public ModelAndView changeUserInfo(RegisterRequest req, HttpSession session) throws Exception{
+	public ModelAndView submitUserInfo(RegisterRequest req, HttpSession session) throws Exception{
 		ModelAndView mv;
-		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
-		req.setEmail(authInfo.getEmail());
+		User user = (User) session.getAttribute("userSession");
+		req.setEmail(user.getEmail());
 		userService.updateUserInfo(req);
 		mv = new ModelAndView("/view/index");
 		return mv;

@@ -11,8 +11,8 @@
 	<form  action="customerSignUpStep3.do"  method="post">
 	<p>
 		<label><spring:message code ="email"/>:<br>
-		<input type="text" name="email" id="email">
-		<form:errors path="email"/>
+		<input type="email" name="email" id="email">
+		<form:errors name="email" id="email" path="email"/>
 		</label>
 	</p>
 	<p>

@@ -1,11 +1,11 @@
-package kr.co.ipmall.controller;
+package kr.co.ipmall.controller.userController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import kr.co.ipmall.dao.RegisterRequest;
-import kr.co.ipmall.dao.vo.User;
 import kr.co.ipmall.service.UserService;
+import kr.co.ipmall.vo.User;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
