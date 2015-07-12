@@ -7,6 +7,9 @@ public class Seller extends User {
 	private String address;
 	private String brNumber;
 	
+	public Seller() {
+		// super();
+	}
 
 	public Seller(String email, String password, String name, String phone,
 			int level, Date create_time, Date update_time, String accountNum, String accountName, int status,
@@ -16,6 +19,14 @@ public class Seller extends User {
 		this.address = address;
 		this.brNumber = brNumber;
 	}
+	
+	public Seller(User user){
+		super(user.getEmail(), user.getPw(), user.getName(), user.getPhone(), user.getLevel(), user.getCreate_time(), user.getUpdate_time(),
+				user.getAccountNum(), user.getAccountName(), user.getStatus());
+		this.address = ((Seller)user).getAddress();
+		this.brNumber = ((Seller)user).getBrNumber();
+	}
+	
 	public String getAddress() {
 		return address;
 	}

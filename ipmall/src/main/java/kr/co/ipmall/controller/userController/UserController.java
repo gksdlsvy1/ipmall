@@ -3,9 +3,10 @@ package kr.co.ipmall.controller.userController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import kr.co.ipmall.dao.RegisterRequest;
 import kr.co.ipmall.service.UserService;
 import kr.co.ipmall.vo.AuthInfo;
+import kr.co.ipmall.vo.Customer;
+import kr.co.ipmall.vo.RegisterRequest;
 import kr.co.ipmall.vo.User;
 
 import org.apache.log4j.Logger;
@@ -58,9 +59,9 @@ public class UserController {
     	return mv;
     }
 		
+	// 동의 체크하지 않으면 넘어가지 않음
 	@RequestMapping(value="customerSignUpStep2.do" , method = RequestMethod.POST)
-	public ModelAndView customerSignUpStep2(@RequestParam(value = "agree", defaultValue = "false") Boolean agree,
-			Model model) throws Exception{
+	public ModelAndView customerSignUpStep2(@RequestParam(value = "agree", defaultValue = "false") Boolean agree, Model model) throws Exception{
 		ModelAndView mv;
 		if(!agree) {
 			mv = new ModelAndView("/view/register/customerSignUpStep1");
@@ -88,8 +89,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="customerSignUpStep3.do" , method = RequestMethod.POST)
-	public ModelAndView customerSignUpStep3(RegisterRequest req, Errors errors) throws Exception{
-		new RegisterRequestValidator().validate(req, errors);
+	public ModelAndView customerSignUpStep3(Customer customer, Errors errors) throws Exception{
+		new RegisterRequestValidator().validate(customer, errors);
 		ModelAndView mv;
 		
 		////////////////////
@@ -100,9 +101,10 @@ public class UserController {
 		}
 		try{
 			// 객체 생성시 구매자, 활동 으로 저장
-			req.setLevel(User.CUSTOMER);
-			req.setStatus(User.ACTIVE);
-			userService.insertUser(req);
+			customer.setLevel(User.CUSTOMER);
+			customer.setStatus(User.ACTIVE);
+			
+			userService.insertUser(customer);
 			mv = new ModelAndView("/view/index");
 			return mv;
 		} catch(kr.co.ipmall.model.exception.AlreadyExistingUserException ex){
@@ -125,90 +127,25 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="changeUserInfo.do")
-	public ModelAndView changeUserInfo(@ModelAttribute("req") User user, HttpSession session) throws Exception{
+	public ModelAndView changeUserInfo(HttpSession session) throws Exception{
 		ModelAndView mv;
 		
-		user = (User)session.getAttribute("userSession");
+		User user = (User)session.getAttribute("userSession");
+		System.out.println("user info : " +  user.getAccountName());
 		mv = new ModelAndView("/view/edit/changeUserInfoForm");
 		return mv;
 	}
 	
+	// 주요 정보만 넘어옴 , 나중에 customer, seller 등  고유 정보 바꿀수 있도록 업데이트 해야됨
 	@RequestMapping(value="submitChangeUserInfo.do")
-	public ModelAndView submitUserInfo(RegisterRequest req, HttpSession session) throws Exception{
+	public ModelAndView submitUserInfo(User user, HttpSession session) throws Exception{
 		ModelAndView mv;
-		User user = (User) session.getAttribute("userSession");
-		req.setEmail(user.getEmail());
-		userService.updateUserInfo(req);
+		User newUser = (User) session.getAttribute("userSession");
+		user.setEmail(newUser.getEmail());
+		userService.updateUserInfo(user);
 		mv = new ModelAndView("/view/index");
 		return mv;
 	}
 	
 	
-	//////////////////////////////////////////////////
-	
-	/*
-	@RequestMapping(value="/view/openBoardList.do")
-    public ModelAndView openBoardList(CommandMap commandMap) throws Exception{
-    	ModelAndView mv = new ModelAndView("/view/boardList");
-    	
-    	List<Map<String,Object>> list = userService.selectBoardList(commandMap.getMap());
-    	mv.addObject("list", list);
-    	
-    	return mv;
-    }
-	
-	@RequestMapping(value="/view/openBoardWrite.do")
-	public ModelAndView openBoardWrite(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("/view/boardWrite");
-		
-		return mv;
-	}
-	
-	@RequestMapping(value="/view/insertBoard.do")
-	public ModelAndView insertBoard(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/view/openBoardList.do");
-		
-		userService.insertBoard(commandMap.getMap());
-		
-		return mv;
-	}
-	
-	@RequestMapping(value="/view/openBoardDetail.do")
-	public ModelAndView openBoardDetail(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("/view/boardDetail");
-		
-		Map<String,Object> map = userService.selectBoardDetail(commandMap.getMap());
-		mv.addObject("map", map);
-		
-		return mv;
-	}
-	
-	@RequestMapping(value="/view/openBoardUpdate.do")
-	public ModelAndView openBoardUpdate(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("/view/boardUpdate");
-		
-		Map<String,Object> map = userService.selectBoardDetail(commandMap.getMap());
-		mv.addObject("map", map);
-		
-		return mv;
-	}
-	
-	@RequestMapping(value="/view/updateBoard.do")
-	public ModelAndView updateBoard(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/view/openBoardDetail.do");
-		
-		userService.updateBoard(commandMap.getMap());
-		
-		mv.addObject("IDX", commandMap.get("IDX"));
-		return mv;
-	}
-	
-	@RequestMapping(value="/view/deleteBoard.do")
-	public ModelAndView deleteBoard(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/view/openBoardList.do");
-		
-		userService.deleteBoard(commandMap.getMap());
-		
-		return mv;
-	}*/
 }

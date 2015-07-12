@@ -3,18 +3,16 @@ package kr.co.ipmall.controller.userController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import kr.co.ipmall.model.exception.IdPasswordNotMatchingException;
-import kr.co.ipmall.service.AuthService;
-import kr.co.ipmall.service.UserService;
-import kr.co.ipmall.vo.AuthInfo;
-import kr.co.ipmall.vo.User;
-
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import kr.co.ipmall.service.UserService;
+import kr.co.ipmall.vo.AuthInfo;
+import kr.co.ipmall.vo.User;
 
 @Controller
 public class LoginController {
@@ -46,21 +44,19 @@ public class LoginController {
 	public ModelAndView submit(LoginCommand loginCommand, Errors errors, HttpSession session) throws Exception{
 		new LoginCommandValidator().validate(loginCommand, errors);
 		ModelAndView mv;
-		AuthInfo authInfo;
-		/////
 		User user;
-		////
+		
+		
 		if(errors.hasErrors()){
+			System.out.println("login submit error : " + errors);
 			mv = new ModelAndView("/view/login/loginSuccess");
 			return mv;
 		}
-			System.out.println("try");
 			try {
-				System.out.println("try");
-				/////authInfo = authService.authenticate(loginCommand.getEmail(), loginCommand.getPassword());
-				user = userService.authenticate(loginCommand.getEmail(), loginCommand.getPassword());
-				// 세션에 authInfo 저장
-				////session.setAttribute("authInfo", authInfo);
+				System.out.println("authenticate!!!");
+				user = userService.authenticate(loginCommand.getEmail(), loginCommand.getPw());
+				System.out.println(user.getEmail());
+				// session에 user 객체 저장
 				session.setAttribute("userSession", user);
 				mv = new ModelAndView("/view/index");
 				return mv;

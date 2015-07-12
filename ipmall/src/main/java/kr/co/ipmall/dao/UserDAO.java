@@ -27,14 +27,14 @@ public class UserDAO extends AbstractDAO{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectUser(RegisterRequest req) {
-		return (Map<String, Object>)selectOne("user.selectUser",req);
+	public User selectUser(User user) {
+		return (User)selectOne("user.selectUser",user);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectByEmail(String email) {
+	public User selectByEmail(String email) {
 		try{
-			return (Map<String, Object>)selectOne("user.selectUser",email);
+			return (User)selectOne("user.selectUser",email);
 		} catch(UserNotFoundException ex) {
 			return null;
 		}

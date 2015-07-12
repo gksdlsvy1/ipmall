@@ -1,4 +1,4 @@
-package kr.co.ipmall.dao;
+package kr.co.ipmall.vo;
 
 
 public class RegisterRequest {

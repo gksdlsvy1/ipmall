@@ -3,7 +3,8 @@ package kr.co.ipmall.controller.userController;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import kr.co.ipmall.dao.RegisterRequest;
+import kr.co.ipmall.vo.RegisterRequest;
+import kr.co.ipmall.vo.User;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -25,20 +26,20 @@ public class RegisterRequestValidator implements Validator {
 	
 	@Override
 	public void validate(Object target, Errors errors) {
-		RegisterRequest regReq = (RegisterRequest)target;
-		if(regReq.getEmail() == null || regReq.getEmail().trim().isEmpty()) {
+		User user = (User)target;
+		if(user.getEmail() == null || user.getEmail().trim().isEmpty()) {
 			errors.rejectValue("email", "required");
 		} else {
-			Matcher matcher = pattern.matcher(regReq.getEmail());
+			Matcher matcher = pattern.matcher(user.getEmail());
 			if(!matcher.matches()) {
 				errors.rejectValue("email", "bad");
 			}
 		}
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required");
-		ValidationUtils.rejectIfEmpty(errors, "password", "required");
+		ValidationUtils.rejectIfEmpty(errors, "pw", "required");
 		ValidationUtils.rejectIfEmpty(errors, "confirmPassword", "required");
-		if(!regReq.getPassword().isEmpty()) {
-			if(!regReq.isPasswordEqualToConfirmPassword()) {
+		if(!user.getPw().isEmpty()) {
+			if(!user.isPasswordEqualToConfirmPassword()) {
 				errors.rejectValue("confirmPassword", "nomatch");
 			}
 		}

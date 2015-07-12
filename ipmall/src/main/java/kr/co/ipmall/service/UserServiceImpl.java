@@ -1,21 +1,16 @@
 package kr.co.ipmall.service;
 
-import java.util.Date;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
-import kr.co.ipmall.dao.RegisterRequest;
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
 import kr.co.ipmall.dao.UserDAO;
 import kr.co.ipmall.model.exception.IdPasswordNotMatchingException;
-import kr.co.ipmall.vo.AuthInfo;
 import kr.co.ipmall.vo.Customer;
 import kr.co.ipmall.vo.Manager;
 import kr.co.ipmall.vo.Seller;
 import kr.co.ipmall.vo.User;
-
-import org.apache.log4j.Logger;
-import org.springframework.stereotype.Service;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
@@ -23,54 +18,38 @@ public class UserServiceImpl implements UserService{
 	
 	@Resource(name="userDAO")
 	private UserDAO userDAO;
+
 	
-	/*
+	/////////////////////////////////// 이부분 newUser객체로 초기화해서 넣어야되는지 아니면 그냥 user 사용하면 customer 같은 자식 클래스에 값이 자동으로 저장되는지 확인해봐야됨
 	@Override
-	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
-		return userDAO.selectBoardList(map);
-		
-	}
-
-	@Override
-	public void insertBoard(Map<String, Object> map) throws Exception {
-		userDAO.insertBoard(map);
-	}
-
-	@Override
-	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
-		userDAO.updateHitCnt(map);
-		Map<String, Object> resultMap = userDAO.selectBoardDetail(map);
-		return resultMap;
-	}
-
-	@Override
-	public void updateBoard(Map<String, Object> map) throws Exception{
-		userDAO.updateBoard(map);
-	}
-
-	@Override
-	public void deleteBoard(Map<String, Object> map) throws Exception {
-		userDAO.deleteBoard(map);
-	}*/
-
-	@Override
-	public void insertUser(RegisterRequest req) throws Exception {
+	public void insertUser(User user) throws Exception {
 		// TODO Auto-generated method stub
 		
 		// select 유저를 통해 DB에 해당 email이 있는지 검색
-		Map<String, Object> map = userDAO.selectUser(req);	
-		
+		User newUser = userDAO.selectUser(user);	
+		System.out.println("After selectUser");
 
 		
 		// email이 있는 경우 exception 처리
-		if(map.get("email") != null)
-			throw new kr.co.ipmall.model.exception.AlreadyExistingUserException("dup email " + map.get("email"));
-		System.out.println("rerwerr");
-		/*
-		if(((Seller)user).getBrNumber() == req.getBrNumber())
-			throw new kr.co.ipmall.model.exception.AlreadyExistingUserException("dup email " + user.getEmail());*/
-		User newUser;
+		if(newUser != null)
+			throw new kr.co.ipmall.model.exception.AlreadyExistingUserException("dup email " + user.getEmail());
+		System.out.println("After check email");
 		
+		switch(user.getLevel()){
+		case User.CUSTOMER :
+			newUser = new Customer(user);
+			break;
+		case User.SELLER :
+			newUser = new Seller(user);
+			break;
+		case User.MANAGER :
+			newUser = new Manager(user);
+		}
+		/*
+		if(((Seller)newUSer).getBrNumber() == user.getBrNumber())
+			throw new kr.co.ipmall.model.exception.AlreadyExistingUserException("dup email " + user.getEmail());*/
+		
+		/*
 		// 각 유저 level 별로 구매자, 판매자, 관리자를 나누어 newUser 객체 초기화
 		if(req.getLevel() == User.CUSTOMER) {
 			
@@ -87,7 +66,7 @@ public class UserServiceImpl implements UserService{
 			newUser = new Manager(req.getEmail(), req.getPassword(), req.getName(), req.getPhone(), req.getLevel(), new Date(), new Date(),
 					req.getAccountNum(), req.getAccountName(),req.getStatus(), req.getDepartment(), req.getPosition());
 			
-		}
+		}*/
 			userDAO.insertUser(newUser);
 			
 	}
@@ -96,19 +75,23 @@ public class UserServiceImpl implements UserService{
 		userDAO.deleteUser(email);
 	}
 	
-	public void updateUserInfo(RegisterRequest req) throws Exception {
-		User user = new Customer(req.getEmail(), req.getPassword(), req.getName(), req.getPhone(), req.getLevel(), new Date(), new Date(),
-				req.getAccountNum(), req.getAccountName(), req.getStatus(), req.getBirthday(), req.getSex());
+	///////////// 이 부분도 customer 고유의 변수도 초기화 되는지 확인해 봐야됨
+	public void updateUserInfo(User user) throws Exception {
+		/*User user = new Customer(req.getEmail(), req.getPassword(), req.getName(), req.getPhone(), req.getLevel(), new Date(), new Date(),
+				req.getAccountNum(), req.getAccountName(), req.getStatus(), req.getBirthday(), req.getSex());*/
 		userDAO.updateUser(user);
 	}
 	
-	@SuppressWarnings("unused")
 	public User authenticate(String email, String password) throws Exception{
 
 		// User 객체로 곧바로 받을 수 없기 때문에 user 초기화를 통해 객체 생성
-		Map<String, Object> map = userDAO.selectByEmail(email);
+		System.out.println("User Service : authenticate!!!");
+		User user = userDAO.selectByEmail(email);
+		System.out.println("user : " + user.getAccountName());
+		
+		/*
 		User user = new User((String)map.get("email"), (String)map.get("pw"), (String)map.get("name"), (String)map.get("phone"), (int)map.get("level"),(Date)map.get("create_time"), (Date)map.get("update_time"),
-				(String)map.get("account_num"), (String)map.get("account_name"), (int)map.get("status"));
+				(String)map.get("account_num"), (String)map.get("account_name"), (int)map.get("status"));*/
 		
 		// 각 로그인 exception 처리
 		if(user == null){

@@ -6,14 +6,20 @@ public class User {
 
 	private Long user_no;
 	private String email;
-	private String password;
+	private String pw;
+	private String confirmPassword;
 	private String name;
 	private String phone;
 	private int level;
 	private Date create_time;
 	private Date update_time;
-	private String account_num;
-	private String account_name;
+	private String password;
+	private String accountNum;
+	private String accountName;
+	/*
+	private String accountNum;
+	private String accountName;
+	*/
 	private int status;
 	
 	public final static int MANAGER = 1;
@@ -25,17 +31,17 @@ public class User {
 	public User(){};
 
 	public User(String email, String password, String name, String phone, int level, Date create_time, Date update_time,
-			String account_num, String account_name, int status) {
+			String accountNum, String accountName, int status) {
 		System.out.println("User 생성자");
 		this.email = email;
-		this.password = password;
+		this.pw = password;
 		this.name = name;
 		this.phone = phone;
 		this.level = level;
 		this.create_time = create_time;
 		this.update_time = update_time;
-		this.account_num = account_num;
-		this.account_name = account_name;
+		this.accountNum = accountNum;
+		this.accountName = accountName;
 		this.status = status;
 	}
 
@@ -54,10 +60,10 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getPassword() {
-		return password;
+	public String getConfirmPassword() {
+		return confirmPassword;
 	}
+
 
 	public String getName() {
 		return name;
@@ -81,14 +87,6 @@ public class User {
 	
 	public Date getUpdateTime() {
 		return update_time;
-	}
-	
-	public String getAccountNum() {
-		return account_num;
-	}
-	
-	public String getAccountName() {
-		return account_name;
 	}
 	
 	public int getStatus() {
@@ -123,24 +121,9 @@ public class User {
 		this.update_time = update_time;
 	}
 
-	public String getAccount_num() {
-		return account_num;
-	}
 
-	public void setAccount_num(String account_num) {
-		this.account_num = account_num;
-	}
-
-	public String getAccount_name() {
-		return account_name;
-	}
-
-	public void setAccount_name(String account_name) {
-		this.account_name = account_name;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 	public void setName(String name) {
@@ -152,14 +135,49 @@ public class User {
 	}
 	
 	public void changePassword(String oldPassword, String newPassword) {
-		if (!password.equals(oldPassword))
+		if (!pw.equals(oldPassword))
 			throw new kr.co.ipmall.model.exception.IdPasswordNotMatchingException();
-		this.password = newPassword;
+		this.pw = newPassword;
 	}
 	
 	public boolean matchPassword(String pwd) {
-		System.out.println(this.password);
-		return this.password.equals(pwd);
+		System.out.println(this.pw);
+		return this.pw.equals(pwd);
+	}
+	public boolean isPasswordEqualToConfirmPassword() {
+		return pw.equals(confirmPassword);
+	}
+
+	public String getAccountNum() {
+		return accountNum;
+	}
+
+	public void setAccountNum(String accountNum) {
+		this.accountNum = accountNum;
+	}
+
+	public String getAccountName() {
+		return accountName;
+	}
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+
+	public String getPw() {
+		return pw;
+	}
+
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 

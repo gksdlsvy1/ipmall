@@ -13,6 +13,14 @@ public class Manager extends User{
 		this.department = department;
 		this.position = position;
 	}
+	
+	public Manager(User user){
+		super(user.getEmail(), user.getPw(), user.getName(), user.getPhone(), user.getLevel(), user.getCreate_time(), user.getUpdate_time(),
+				user.getAccountNum(), user.getAccountName(), user.getStatus());
+		this.department = ((Manager)user).getDepartment();
+		this.position = ((Manager)user).getPosition();
+	}
+	
 	public String getDepartment() {
 		return department;
 	}

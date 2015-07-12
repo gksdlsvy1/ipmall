@@ -1,7 +1,5 @@
 package kr.co.ipmall.service;
 
-import kr.co.ipmall.dao.RegisterRequest;
-import kr.co.ipmall.vo.AuthInfo;
 import kr.co.ipmall.vo.User;
 
 public interface UserService {
@@ -17,8 +15,8 @@ public interface UserService {
 
 	void deleteBoard(Map<String, Object> map) throws Exception;
 	*/
-	void insertUser(RegisterRequest req) throws Exception;
+	void insertUser(User user) throws Exception;
 	void deleteUser(String email) throws Exception;
-	void updateUserInfo(RegisterRequest req) throws Exception;
+	void updateUserInfo(User user) throws Exception;
 	User authenticate(String email, String password) throws Exception;
 }

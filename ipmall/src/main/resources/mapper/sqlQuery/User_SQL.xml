@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user">
-	<select id="selectUser" parameterType="hashmap" resultType="hashmap">
+	<select id="selectUser" parameterType="kr.co.ipmall.vo.User" resultType="kr.co.ipmall.vo.User">
 		<![CDATA[
 			SELECT
 			    email,
@@ -10,10 +10,10 @@
 			    name,
 			    phone,
 			    level,
-			    create_time,
-			    update_time,
-			    account_num,
-			    account_name,
+			    createTime,
+			    updateTime,
+			    accountNum,
+			    accountName,
 			    status
 			FROM
 			    user
@@ -22,7 +22,7 @@
 		]]>
 	</select>
 	
-	<insert id="insertUser" parameterType="hashmap">
+	<insert id="insertUser" parameterType="kr.co.ipmall.vo.User">
 		<![CDATA[
 			INSERT INTO user
 			(
@@ -31,23 +31,23 @@
 			    name,
 			    phone,
 			    level,
-			    create_time,
-			    update_time,
-			    account_num,
-			    account_name,
+			    createTime,
+			    updateTime,
+			    accountNum,
+			    accountName,
 			    status
 			)
 			VALUES
 			(
 				#{email},
-			    #{password}, 
+			    #{pw}, 
 			    #{name}, 
 				#{phone},
 				#{level},
 				now(),
 				now(),
-				#{account_num},
-				#{account_name},
+				#{accountNum},
+				#{accountName},
 				#{status}
 			)
 		]]>
@@ -111,14 +111,14 @@
 		<![CDATA[
 			UPDATE user
 			SET
-				pw = #{password},
-				update_time = now()
+				pw = #{pw},
+				updateTime = now()
 			WHERE
 				email = #{email}	
 		]]>
 	</update>
 	
-		<update id="deleteUser" parameterType="hashmap">
+		<update id="deleteUser" parameterType="kr.co.ipmall.vo.User">
 		<![CDATA[
 			UPDATE user
 			SET
@@ -127,28 +127,34 @@
 			    name = 0,
 			    phone = 0,
 			    level = 0,
-			    create_time = 0,
-			    update_time = now(),
-			    account_num = 0,
-			    account_name = 0,
+			    createTime = 0,
+			    updateTime = now(),
+			    accountNum = 0,
+			    accountName = 0,
 			    status = 0
 			WHERE
 				email = #{email}
 		]]>
 	</update>
 	
-	<update id="updateUser" parameterType="hashmap">
+	<update id="updateUser" parameterType="kr.co.ipmall.vo.User">
 		<![CDATA[
 			UPDATE user
 			SET
 			    phone = #{phone},
-			    update_time = now(),
-			    account_num = #{account_num},
-			    account_name = #{account_name}
+			    updateTime = now(),
+			    accountNum = #{accountNum},
+			    accountName = #{accountName}
 			WHERE
 				email = #{email}
 		]]>
 	</update>
+	
+	
+	
+	
+	
+	
 	
 	
 	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">

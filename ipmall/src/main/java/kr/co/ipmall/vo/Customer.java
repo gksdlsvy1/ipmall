@@ -7,6 +7,10 @@ public class Customer extends User{
 	private String birthday;
 	private int sex;
 	
+	public Customer(){
+		//super();
+	}
+	
 	public Customer(String email, String password, String name, String phone,
 			int level, Date create_time, Date update_time, String accountNum, String accountName, int status,
 			String birthday, int sex ) {
@@ -15,6 +19,14 @@ public class Customer extends User{
 		this.birthday = birthday;
 		this.sex = sex;
 	}
+	
+	public Customer(User user){
+		super(user.getEmail(), user.getPw(), user.getName(), user.getPhone(), user.getLevel(), user.getCreate_time(), user.getUpdate_time(),
+				user.getAccountNum(), user.getAccountName(), user.getStatus());
+		this.birthday = ((Customer)user).getBirthday();
+		this.sex = ((Customer)user).getSex();
+	}
+	
 	public String getBirthday() {
 		return birthday;
 	}
