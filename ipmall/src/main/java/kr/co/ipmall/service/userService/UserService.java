@@ -1,4 +1,4 @@
-package kr.co.ipmall.service;
+package kr.co.ipmall.service.userService;
 
 import kr.co.ipmall.vo.User;
 

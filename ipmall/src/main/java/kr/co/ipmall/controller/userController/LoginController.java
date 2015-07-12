@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.ipmall.service.UserService;
+import kr.co.ipmall.service.userService.UserService;
 import kr.co.ipmall.vo.AuthInfo;
 import kr.co.ipmall.vo.User;
 
@@ -42,7 +42,6 @@ public class LoginController {
 	
 	@RequestMapping(value="submit.do",method = RequestMethod.POST)
 	public ModelAndView submit(LoginCommand loginCommand, Errors errors, HttpSession session) throws Exception{
-		new LoginCommandValidator().validate(loginCommand, errors);
 		ModelAndView mv;
 		User user;
 		

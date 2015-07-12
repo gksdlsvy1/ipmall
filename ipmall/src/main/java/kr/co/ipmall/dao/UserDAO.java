@@ -1,11 +1,9 @@
 package kr.co.ipmall.dao;
 
-import java.util.Map;
+import org.springframework.stereotype.Repository;
 
 import kr.co.ipmall.model.exception.UserNotFoundException;
 import kr.co.ipmall.vo.User;
-
-import org.springframework.stereotype.Repository;
 
 @Repository("userDAO")
 public class UserDAO extends AbstractDAO{

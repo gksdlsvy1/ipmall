@@ -58,16 +58,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						      <ul class="nav navbar-nav">
 						      	 <li>
 						         <div class="btn-group show-on-hover">
+						         
 							          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 							            Categories<span class="caret"></span>
 							          </button>
+							          
 							          <ul class="dropdown-menu" role="menu">
-							            <li><a href="#">New arrivals</a></li>
-							            <li><a href="#">Men</a></li>
-							            <li><a href="#">Women</a></li>						            
-							            <li><a href="#">Accessories</a></li>
+							          <c:forEach items="${bigCategory}" var="bigCategory">
+							         	 <li>
+							         	 <a href="#">${bigCategory.name}</a>
+							         	 	<div>
+							         	 		<ul class="child" role="menu">
+							         				<c:forEach items="${smallCategory}" var="smallCategory">
+							         			 		<c:if test = "${smallCategory.upper_category_no == bigCategory.category_no}" var="testResult"> 
+							         			 			<li><a href="#">${smallCategory.name}</a></li>
+							         			 		</c:if>
+							         			 	</c:forEach>	
+							         			</ul>
+							         	 	</div>
+							         	 </li>
+							          </c:forEach>
 							          </ul>
-							        </div>						          
+							        </div>
+							        
+							        
+							        						          
 						        </li>
 						        <li><a href="about.html">About</a></li>
 						        <li><a href="blog.html">Blog</a></li>
@@ -96,10 +111,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			        <div class="form-group" style="width:80%">
 			        <input type="text" class="form-control" placeholder="Search" style="width: 100%">
 			        </div>
-			       <!--   <ul class="list-unstyled">
-			        <li><a href="list.do">Find</a></li>
-			        </ul>-->
-			        <button type="Find" class="btn btn-default" onclick="list">Find</button>
+					
+			        <button type="Find" class="btn btn-default" onclick="location='http://localhost:8080/ipmall/list'">Find</button>
 			    </form> 	
 				</div>
 

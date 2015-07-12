@@ -3,7 +3,7 @@ package kr.co.ipmall.controller.userController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import kr.co.ipmall.service.UserService;
+import kr.co.ipmall.service.userService.UserService;
 import kr.co.ipmall.vo.RegisterRequest;
 import kr.co.ipmall.vo.Seller;
 import kr.co.ipmall.vo.User;

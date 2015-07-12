@@ -3,7 +3,7 @@ package kr.co.ipmall.controller.userController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import kr.co.ipmall.service.UserService;
+import kr.co.ipmall.service.userService.UserService;
 import kr.co.ipmall.vo.AuthInfo;
 import kr.co.ipmall.vo.Customer;
 import kr.co.ipmall.vo.RegisterRequest;
@@ -35,20 +35,6 @@ public class UserController {
 	@RequestMapping(value="details.do")
     public ModelAndView detail() throws Exception{
     	ModelAndView mv = new ModelAndView("/view/details");
-    	
-    	return mv;
-    }
-	
-	@RequestMapping(value="index.do")
-    public ModelAndView index() throws Exception{
-    	ModelAndView mv = new ModelAndView("/view/index");
-    	
-    	return mv;
-    }
-	
-	@RequestMapping(value="main.do")
-    public ModelAndView main() throws Exception{
-    	ModelAndView mv = new ModelAndView("/view/main");
     	
     	return mv;
     }

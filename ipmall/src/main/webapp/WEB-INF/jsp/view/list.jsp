@@ -78,36 +78,65 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						      <ul class="nav navbar-nav">
 						      	 <li>
-						          <div class="btn-group show-on-hover">
+						         <div class="btn-group show-on-hover">
+						         
 							          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 							            Categories<span class="caret"></span>
 							          </button>
+							          
 							          <ul class="dropdown-menu" role="menu">
-							            <li><a href="#">New arrivals</a></li>
-							            <li><a href="#">Men</a></li>
-							            <li><a href="#">Women</a></li>						            
-							            <li><a href="#">Accessories</a></li>
+							          <c:forEach items="${bigCategory}" var="bigCategory">
+							         	 <li>
+							         	 <a href="#">${bigCategory.name}</a>
+							         	 	<div>
+							         	 		<ul class="child" role="menu">
+							         				<c:forEach items="${smallCategory}" var="smallCategory">
+							         			 		<c:if test = "${smallCategory.upper_category_no == bigCategory.category_no}" var="testResult"> 
+							         			 			<li><a href="#">${smallCategory.name}</a></li>
+							         			 		</c:if>
+							         			 	</c:forEach>	
+							         			</ul>
+							         	 	</div>
+							         	 </li>
+							          </c:forEach>
 							          </ul>
-							        </div>					          
+							        </div>
+							        
+							        
+							        						          
 						        </li>
 						        <li><a href="about.html">About</a></li>
 						        <li><a href="blog.html">Blog</a></li>
 						        <li><a href="contact.html">Contact</a></li>
-						      </ul>							      					    					      
+						      </ul>							     
+						      		 		
 						    </div><!-- /.navbar-collapse -->
 						  </div><!-- /.container-fluid -->
 						</nav>
 						<div class="right">
 							<ul class="list-unstyled">
-								<li class="a text-left"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a> $2,534,5435</li>
-								<li><a href="#">Checkout</a></li>								
+								<c:if test="${empty userSession}">
+								<li><a href="main.do"><!-- onclick="window.open('signIn.html','popup','width=300, height=300, menubar=no, status=no, toolbar=no'); "--> Sign In/Up</a></li>
+								</c:if>
+								<c:if test="${!empty userSession}">
+								<li class="a text-left"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a> $0</li>
+								<li><a href="main.do"><!-- onclick="window.open('signIn.html','popup','width=300, height=300, menubar=no, status=no, toolbar=no'); "--> ${userSession.name}</a></li>
+								<li><a href="logout.do">Sing Out</a></li>
+								</c:if>
 							</ul>							
 						</div>	
 					</div>
 					<!----start-images-slider---->	
 				  <!-- Single button -->
-      
+      				    <form class="navbar-form pull-right" role="search" style="width: 90%">
+			        <div class="form-group" style="width:80%">
+			        <input type="text" class="form-control" placeholder="Search" style="width: 100%">
+			        </div>
+					
+			        <button type="Find" class="btn btn-default" onclick="location='http://localhost:8080/ipmall/list'">Find</button>
+			    </form> 	
 				</div>
+
 			</div>
         </div>	
     <div class="single">

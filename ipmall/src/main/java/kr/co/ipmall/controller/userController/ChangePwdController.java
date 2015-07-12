@@ -4,7 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import kr.co.ipmall.model.exception.IdPasswordNotMatchingException;
-import kr.co.ipmall.service.ChangePasswordService;
+import kr.co.ipmall.service.userService.ChangePasswordService;
 import kr.co.ipmall.vo.AuthInfo;
 import kr.co.ipmall.vo.User;
 

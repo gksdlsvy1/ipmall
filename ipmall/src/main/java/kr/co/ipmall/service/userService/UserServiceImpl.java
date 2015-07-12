@@ -1,4 +1,4 @@
-package kr.co.ipmall.service;
+package kr.co.ipmall.service.userService;
 
 import javax.annotation.Resource;
 
@@ -82,6 +82,7 @@ public class UserServiceImpl implements UserService{
 		userDAO.updateUser(user);
 	}
 	
+	@SuppressWarnings("unused")
 	public User authenticate(String email, String password) throws Exception{
 
 		// User 객체로 곧바로 받을 수 없기 때문에 user 초기화를 통해 객체 생성

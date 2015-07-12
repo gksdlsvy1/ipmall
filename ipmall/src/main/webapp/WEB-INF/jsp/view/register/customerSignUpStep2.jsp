@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2><spring:message code ="member.info"/></h2>
-	<form  action="customerSignUpStep3.do"  method="post">
+	<form:form  action="customerSignUpStep3.do"  method="post">
 	<p>
 		<label><spring:message code ="email"/>:<br>
 		<input type="email" name="email" id="email">
@@ -62,6 +62,6 @@
 		</label>
 	</p>
 	<input type="submit" value="<spring:message code ="register.btn"/>">
-	</form>
+	</form:form>
 </body>
 </html>
