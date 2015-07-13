@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="goods">
+	<select id="selectIndexGoods" parameterType="string"
+		resultType="kr.co.ipmall.vo.Goods">
+		SELECT
+		*
+		FROM
+		goods
+		WHERE
+		name like CONCAT('%',#{searchIndex},'%')
+	</select>
+
+	<select id="selectByGoodsNo" parameterType="int"
+		resultType="kr.co.ipmall.vo.Goods">
+		SELECT
+		*
+		FROM
+		goods
+		WHERE
+		goods_no = #{goods_no};
+	</select>
+	
+	
+	<select id="selectGoodsOptionListByGoodsNo" parameterType="int"
+		resultType="kr.co.ipmall.vo.GoodsOption">
+		SELECT
+		*
+		FROM
+		goodsOption
+		WHERE
+		goods_no = #{goods_no};
+	</select>
+</mapper>

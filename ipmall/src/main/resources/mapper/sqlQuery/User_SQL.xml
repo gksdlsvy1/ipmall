@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+	<select id="selectUser" parameterType="kr.co.ipmall.vo.User" resultType="kr.co.ipmall.vo.User">
+		<![CDATA[
+			SELECT
+			    email,
+			    pw,
+			    name,
+			    phone,
+			    level,
+			    createTime,
+			    updateTime,
+			    accountNum,
+			    accountName,
+			    status
+			FROM
+			    user
+			WHERE
+			    email = #{email};
+		]]>
+	</select>
+	
+	<insert id="insertUser" parameterType="kr.co.ipmall.vo.User">
+		<![CDATA[
+			INSERT INTO user
+			(
+			    email,
+			    pw,
+			    name,
+			    phone,
+			    level,
+			    createTime,
+			    updateTime,
+			    accountNum,
+			    accountName,
+			    status
+			)
+			VALUES
+			(
+				#{email},
+			    #{pw}, 
+			    #{name}, 
+				#{phone},
+				#{level},
+				now(),
+				now(),
+				#{accountNum},
+				#{accountName},
+				#{status}
+			)
+		]]>
+	</insert>
+	
+		<insert id="insertCustomer" parameterType="hashmap">
+		<selectKey keyProperty="customer_no" resultType="int" order="BEFORE">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
+		INSERT INTO customer
+		(
+			customer_no,
+			birthday,
+			sex
+		)
+		VALUES
+		(
+			#{customer_no},
+			#{birthday},
+			#{sex}
+		);
+	</insert>
+	
+		<insert id="insertSeller" parameterType="hashmap">
+		<selectKey keyProperty="seller_no" resultType="int" order="BEFORE">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
+		INSERT INTO seller
+		(
+			seller_no,
+			address,
+			brNumber
+		)
+		VALUES
+		(
+			#{seller_no},
+			#{address},
+			#{brNumber}
+		);
+	</insert>
+	
+		<insert id="insertManager" parameterType="hashmap">
+		<selectKey keyProperty="manager_no" resultType="int" order="BEFORE">
+			SELECT LAST_INSERT_ID();
+		</selectKey>
+		INSERT INTO manager
+		(
+			manager_no,
+			department,
+			position
+		)
+		VALUES
+		(
+			#{manager_no},
+			#{department},
+			#{position}
+		);
+	</insert>
+	
+	<update id="updatePwd" parameterType="hashmap">
+		<![CDATA[
+			UPDATE user
+			SET
+				pw = #{pw},
+				updateTime = now()
+			WHERE
+				email = #{email}	
+		]]>
+	</update>
+	
+		<update id="deleteUser" parameterType="kr.co.ipmall.vo.User">
+		<![CDATA[
+			UPDATE user
+			SET
+			    email = 0,
+			    pw = 0,
+			    name = 0,
+			    phone = 0,
+			    level = 0,
+			    createTime = 0,
+			    updateTime = now(),
+			    accountNum = 0,
+			    accountName = 0,
+			    status = 0
+			WHERE
+				email = #{email}
+		]]>
+	</update>
+	
+	<update id="updateUser" parameterType="kr.co.ipmall.vo.User">
+		<![CDATA[
+			UPDATE user
+			SET
+			    phone = #{phone},
+			    updateTime = now(),
+			    accountNum = #{accountNum},
+			    accountName = #{accountName}
+			WHERE
+				email = #{email}
+		]]>
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				IDX,
+				HIT_CNT,
+				CREA_ID,
+				CREA_DTM,
+				TITLE,
+				CONTENTS
+			FROM
+				TB_BOARD
+			WHERE
+				IDX = #{IDX}		
+		]]>
+	</select>
+	
+	<update id="updateBoard" parameterType="hashmap">
+		<![CDATA[
+			UPDATE TB_BOARD 
+			SET
+				TITLE = #{TITLE},
+				CONTENTS = #{CONTENTS}
+			WHERE
+				IDX = #{IDX}	
+		]]>
+	</update>
+	
+	<update id="deleteBoard" parameterType="hashmap">
+		<![CDATA[
+			UPDATE TB_BOARD
+			SET
+				DEL_GB = 'Y'
+			WHERE
+				IDX = #{IDX}
+		]]>
+	</update>
+</mapper>
