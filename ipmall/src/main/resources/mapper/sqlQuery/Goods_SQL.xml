@@ -9,7 +9,8 @@
 		FROM
 		goods
 		WHERE
-		name like CONCAT('%',#{searchIndex},'%')
+		name like
+		CONCAT('%',#{searchIndex},'%')
 	</select>
 
 	<select id="selectByGoodsNo" parameterType="int"
@@ -21,8 +22,8 @@
 		WHERE
 		goods_no = #{goods_no};
 	</select>
-	
-	
+
+
 	<select id="selectGoodsOptionListByGoodsNo" parameterType="int"
 		resultType="kr.co.ipmall.vo.GoodsOption">
 		SELECT
@@ -31,5 +32,15 @@
 		goodsOption
 		WHERE
 		goods_no = #{goods_no};
+	</select>
+
+	<select id="selectByCategoryNo" parameterType="int"
+		resultType="kr.co.ipmall.vo.Goods">
+		SELECT
+		*
+		FROM
+		goods
+		WHERE
+		category_no = #{category_no};
 	</select>
 </mapper>

@@ -90,5 +90,10 @@ public class UserServiceImpl implements UserService{
 		// 이메일, 이름 반환
 		return user;
 	}
+	
+	public int selectUserNo() {
+		int customerNo = (int) userDAO.selectOne("user.selectUserNo");
+		return customerNo;
+	}
 
 }

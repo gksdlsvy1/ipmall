@@ -24,14 +24,15 @@ public class GoodsServiceImpl implements GoodsService{
 	
 	@Transactional
 	public List<Goods> getGoodsList(String searchIndex){
-		List<Goods> goodsList = goodsDao.selectGoodsList(searchIndex);
-		
-		return goodsList;
+		return (List<Goods>)goodsDao.selectGoodsList(searchIndex);
 	}
 	
 	@Transactional
 	public Goods getGoodsByGoodsNo(int goods_no){
-		Goods goods = (Goods) goodsDao.selectOne("goods.selectByGoodsNo", goods_no);
-		return goods;
+		return (Goods) goodsDao.selectOne("goods.selectByGoodsNo", goods_no);
+	}
+	
+	public List<Goods> getGoodsByCategoryNo(int category_no) {
+		return (List<Goods>)goodsDao.selectList("goods.selectByCategoryNo", category_no);
 	}
 }

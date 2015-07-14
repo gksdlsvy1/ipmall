@@ -24,7 +24,6 @@ public class GoodsOptionServiceImpl implements GoodsOptionService{
 	
 	@Transactional
 	public List<GoodsOption> getGoodsOptionListByGoodsNo(int goods_no){
-		List<GoodsOption> goodsOptionList = goodsOptionDao.selectList("goods.selectGoodsOptionListByGoodsNo", goods_no);
-		return goodsOptionList;
+		return (List<GoodsOption>)goodsOptionDao.selectList("goods.selectGoodsOptionListByGoodsNo", goods_no);
 	}
 }

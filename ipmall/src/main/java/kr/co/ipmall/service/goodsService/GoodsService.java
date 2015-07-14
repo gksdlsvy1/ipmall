@@ -9,4 +9,5 @@ public interface GoodsService{
 	public void setGoodsService(GoodsDAO goodsDao);
 	public List<Goods> getGoodsList(String searchIndex);
 	public Goods getGoodsByGoodsNo(int goods_no);
+	public List<Goods> getGoodsByCategoryNo(int category_no);
 }

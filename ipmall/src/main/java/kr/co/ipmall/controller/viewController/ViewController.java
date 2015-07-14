@@ -53,12 +53,4 @@ public class ViewController {
     	return mv;
     }
 	
-	// 상품 리스트 페이지
-	@RequestMapping(value="list.do")
-    public ModelAndView list(){
-    	ModelAndView mv = new ModelAndView("/view/list");
-
-    	return mv;
-    }
-	
 }

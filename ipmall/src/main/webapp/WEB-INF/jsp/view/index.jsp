@@ -75,14 +75,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 											<ul class="dropdown-menu" role="menu">
 												<c:forEach items="${bigCategory}" var="bigCategory">
-													<li><a href="#">${bigCategory.name}</a>
+													<li><a href="list.do?val=${bigCategory.category_no}">${bigCategory.name}</a>
 														<div>
 															<ul class="child" role="menu">
 																<c:forEach items="${smallCategory}" var="smallCategory">
 																	<c:if
 																		test="${smallCategory.upper_category_no == bigCategory.category_no}"
 																		var="testResult">
-																		<li><a href="#">${smallCategory.name}</a></li>
+																		<!-- <a class="btn" href="detail.do?val=${goodsList.goods_no}">구매</a> -->
+																		<li><a href="list.do?val=${smallCategory.category_no}">${smallCategory.name}</a></li>
 																	</c:if>
 																</c:forEach>
 															</ul>

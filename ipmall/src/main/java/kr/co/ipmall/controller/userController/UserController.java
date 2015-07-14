@@ -3,6 +3,7 @@ package kr.co.ipmall.controller.userController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import kr.co.ipmall.service.inventoryService.InventoryService;
 import kr.co.ipmall.service.userService.UserService;
 import kr.co.ipmall.vo.AuthInfo;
 import kr.co.ipmall.vo.Customer;
@@ -25,6 +26,9 @@ public class UserController {
 
 	@Resource(name = "userService")
 	private UserService userService;
+	
+	@Resource(name = "inventoryService")
+	private InventoryService inventoryService;
 
 	private boolean isException = false;
 
@@ -74,6 +78,7 @@ public class UserController {
 			throws Exception {
 		new RegisterRequestValidator().validate(customer, errors);
 		ModelAndView mv;
+		int userNo;
 
 		// //////////////////
 		if (errors.hasErrors()) {
@@ -87,6 +92,8 @@ public class UserController {
 			customer.setStatus(User.ACTIVE);
 
 			userService.insertUser(customer);
+			userNo = userService.selectUserNo();
+			inventoryService.createInventory(customer.getCustomer_no());
 			mv = new ModelAndView("/view/index");
 			return mv;
 		} catch (kr.co.ipmall.model.exception.AlreadyExistingUserException ex) {

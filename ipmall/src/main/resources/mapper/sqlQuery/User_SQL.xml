@@ -156,7 +156,6 @@
 	
 	
 	
-	
 	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT

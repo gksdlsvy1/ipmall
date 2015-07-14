@@ -64,18 +64,14 @@
 </script>
 <!----//details-product-slider--->
 <script type="text/javascript">
-	var totalPrice = ${goods.price};
-	var optionName;
+	var totalPrice = $
+	{
+		goods.price
+	};
 
 	$(document).ready(
 			function() {
 				// 옵션추가 버튼 클릭시
-				$("#options info").click(function() {
-					var id = $(this).attr('id');
-					var name = $(this).attr('name');
-					alert('id: ' + id +', name: ' + name);
-					return false;
-				});
 
 				$(".options").click(
 						function(option) {
@@ -305,211 +301,33 @@
 					</div>
 				</section>
 			</div>
-			<div class="cont span_2_of_3">
-				<div class="labout span_1_of_a1">
-					<!-- start product_slider -->
-					<ul id="etalage">
-						<li><a href="optionallink.html"> <img
-								class="etalage_thumb_image" src="${goods.image}" /> <img
-								class="etalage_source_image" src="${goods.image}" />
-						</a></li>
-
-						<li><img class="etalage_thumb_image" src="${goods.image}" />
-							<img class="etalage_source_image" src="${goods.image}" /></li>
-						<!-- <li>
-								<img class="etalage_thumb_image" src="web/images/t3.jpg" />
-								<img class="etalage_source_image" src="web/images/t3.jpg" />
-							</li>
-							<li>
-								<img class="etalage_thumb_image" src="web/images/t4.jpg" />
-								<img class="etalage_source_image" src="web/images/t4.jpg" />
-							</li>
-							<li>
-								<img class="etalage_thumb_image" src="web/images/t5.jpg" />
-								<img class="etalage_source_image" src="web/images/t5.jpg" />
-							</li>
-							<li>
-								<img class="etalage_thumb_image" src="web/images/t6.jpg" />
-								<img class="etalage_source_image" src="web/images/t6.jpg" />
-							</li>
-							<li>
-								<img class="etalage_thumb_image" src="web/images/t1.jpg" />
-								<img class="etalage_source_image" src="web/images/t1.jpg" />
-							</li> -->
-					</ul>
-
-
-					<!-- end product_slider -->
-				</div>
-				<div class="cont1 span_2_of_a1 pull-right">
-					<h3 class="m_3">${goods.name}</h3>
-					<div class="price_single">
-						<span class="reducedfrom"> 생각 </span> <span class="actual">${goods.price}</span>
-					</div>
-					<ul class="options list-unstyled">
-						<div class="clearfix"></div>
-						<h4 class="m_9">출시 연도 : ${goods.release_year}</h4>
-					</ul>
-					<div class="btn_form">
-						<form>
-							<input type="submit" value="buy now" title="">
-						</form>
-					</div>
-					<ul class="add-to-links list-unstyled">
-						<li><img src="web/images/wish.png" alt=""><a
-							href="inventory.do">장바구니</a></li>
-					</ul>
-					<p class="m_desc">
-						가격 : <span id="price"></span>
-					</p>
-					<!-- 총 가격 계산해서 넘겨야됨 -->
-
-					<div class="social_single">
-						<ul list-unstyled>
-							<li class="fb"><a href="#"><span> </span></a></li>
-							<li class="tw"><a href="#"><span> </span></a></li>
-							<li class="g_plus"><a href="#"><span> </span></a></li>
-							<li class="rss"><a href="#"><span> </span></a></li>
-						</ul>
-					</div>
-					<!-- <select id="cbxOptSel1"
-						onchange="optionSelect.optionSelChoice(this, '1', 'N')">
-						<option value="">선택하세요</option>
-
-						<c:forEach items="${options}" var="options">
-							<option class="addOptions" value="${options.name}">${options.name}${options.price}</option>
-						</c:forEach>
-						 옵션 선책 추가해야됨 
-					</select> -->
-
-
-					<table id="example" border="1px">
-						<tr>
-							<ul class="options list-unstyled">
-								<h4 class="m_9">Select Options</h4>
-								<c:forEach items="${options}" var="options">
-									<script>
-										optionName = ${options.name};
-									</script>	
-									<div id="options">
-									<input type="hidden"  id="name" name="info" value="${options.name}"/>${options.name}
-									<input type="hidden" id="price" name="info" value="${options.price}"/>${options.price}
-									</div>
-
-
-								</c:forEach>
-							</ul>
-						</tr>
-
-						<tr class="item1">
-							<td>
-								<ul class="options list-unstyled">
-									<li><a>${goods.name} <span id="option"></span></a></li>
-								</ul>
-							<td><button class="delNum">감소</button></td>
-							<td><button class="delBtn">삭제</button></td>
-						</tr>
-					</table>
-
-
-
-
-
-				</div>
-				<div class="clearfix"></div>
-			</div>
-
-
-			<!--  카티고리 같은 물품 뿌려줄 계획  
-			<div class="nbs-flexisel-container">
-				<div class="nbs-flexisel-inner">
-					<ul id="flexiselDemo1" class="nbs-flexisel-ul"
-						style="left: -195.2px; display: block;">
-					<c:forEach items="${goodsList}" var="downGoodsList" varStatus="downStatus">
-						<li class="nbs-flexisel-item" style="width: 195.2px;"><img
-							src="${downGoodsList.image}">
-							<div class="grid-flex">
-								<!--  <a href="#">${downGoodsList.name}</a>
-								<p>${downGoodsList.name}</p>
-							</div></li>
-							</c:forEach>	
-					</ul>
-					<div class="nbs-flexisel-nav-left" style="top: 74px;"></div>
-					<div class="nbs-flexisel-nav-right" style="top: 74px;"></div>
-				</div>
-			</div>
-			<script type="text/javascript">
-				$(window).load(function() {
-					$("#flexiselDemo1").flexisel();
-					$("#flexiselDemo2").flexisel({
-						enableResponsiveBreakpoints : true,
-						responsiveBreakpoints : {
-							portrait : {
-								changePoint : 480,
-								visibleItems : 1
-							},
-							landscape : {
-								changePoint : 640,
-								visibleItems : 2
-							},
-							tablet : {
-								changePoint : 768,
-								visibleItems : 3
-							}
-						}
-					});
-
-					$("#flexiselDemo3").flexisel({
-						visibleItems : 5,
-						animationSpeed : 1000,
-						autoPlay : true,
-						autoPlaySpeed : 3000,
-						pauseOnHover : true,
-						enableResponsiveBreakpoints : true,
-						responsiveBreakpoints : {
-							portrait : {
-								changePoint : 480,
-								visibleItems : 1
-							},
-							landscape : {
-								changePoint : 640,
-								visibleItems : 2
-							},
-							tablet : {
-								changePoint : 768,
-								visibleItems : 3
-							}
-						}
-					});
-
-				});
-			</script>
 			
-			<script type="text/javascript" src="web/js/jquery.flexisel.js"></script>
-			-->
-			<div class="toogle">
-				<h3 class="m_3">Product Details</h3>
-				<p class="m_text">${goods.description}</p>
-			</div>
-			<!--  나중에 리뷰 게시판 만들 계획 
-			<div class="toogle">
-				<h3 class="m_3">Product Reviews</h3>
-				<p class="m_text">Lorem ipsum dolor sit amet, consectetuer
-					adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-					dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-					quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-					aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in
-					hendrerit in vulputate velit esse molestie consequat, vel illum
-					dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto
-					odio dignissim qui blandit praesent luptatum zzril delenit augue
-					duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta
-					nobis eleifend option congue nihil imperdiet doming id quod mazim
-					placerat facer possim assum.</p>
-			</div>		-->
-
+			
+			<c:forEach items="$inventory" var="inventory">
+			<table id="inventoryInfo" border="1px">
+			<tr>
+				<th>상품/옵셩정보</th>
+				<th>수량</th>
+				<th>상품금액</th>
+				<th>주문</th>
+			</tr>
+			<tr class="item1">
+				<td><input type="text" /></td>
+				<td><input type="text"/> </td>
+				<td><input type="text"/></td>
+				<td><input type="button" value="주문" onclick="location.href='order.do'">
+					<input type="button" value="삭제"/>
+				</td>
+			</tr>
+			</table>
+			
+			</c:forEach>
+			
+			
+			
+			
+			
 		</div>
-
-		<div class="clearfix"></div>
 	</div>
 	<div class="footer">
 		<div class="container">

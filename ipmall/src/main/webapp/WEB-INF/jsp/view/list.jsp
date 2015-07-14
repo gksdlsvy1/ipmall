@@ -70,7 +70,7 @@
 																	<c:if
 																		test="${smallCategory.upper_category_no == bigCategory.category_no}"
 																		var="testResult">
-																		<li><a href="#">${smallCategory.name}</a></li>
+																		<li><a href="list.do?val=${smallCategory.category_no}">${smallCategory.name}</a></li>
 																	</c:if>
 																</c:forEach>
 															</ul>
