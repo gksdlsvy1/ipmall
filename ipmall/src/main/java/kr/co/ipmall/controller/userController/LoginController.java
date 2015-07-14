@@ -41,7 +41,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="submit.do",method = RequestMethod.POST)
-	public ModelAndView submit(LoginCommand loginCommand, Errors errors, HttpSession session){
+	public ModelAndView submit(LoginCommand loginCommand, Errors errors, HttpSession session) throws Exception{
 		ModelAndView mv;
 		User user;
 		
@@ -54,6 +54,7 @@ public class LoginController {
 			try {
 				System.out.println("authenticate!!!");
 				user = userService.authenticate(loginCommand.getEmail(), loginCommand.getPw());
+				System.out.println(user.getEmail());
 				// session에 user 객체 저장
 				session.setAttribute("userSession", user);
 				mv = new ModelAndView("/view/index");

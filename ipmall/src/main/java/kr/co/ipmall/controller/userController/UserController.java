@@ -143,5 +143,4 @@ public class UserController {
 		mv = new ModelAndView("/view/index");
 		return mv;
 	}
-
 }

@@ -57,6 +57,7 @@ public class ViewController {
 	@RequestMapping(value="list.do")
     public ModelAndView list(){
     	ModelAndView mv = new ModelAndView("/view/list");
+
     	return mv;
     }
 	

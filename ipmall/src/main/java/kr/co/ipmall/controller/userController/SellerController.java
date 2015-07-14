@@ -45,12 +45,7 @@ public class SellerController {
 		mv = new ModelAndView("/view/register/sellerSignUpStep2");
 		return mv;
 	}
-	
-	@RequestMapping(value="sellerSignUpStep2.do" , method = RequestMethod.GET)
-	public ModelAndView sellerSignUpStep2Get(){
-		ModelAndView mv = new ModelAndView("redirect:/view/register/sellerSignUpStep1");
-		return mv;
-	}
+
 	
 	@RequestMapping(value="sellerSignUpStep3.do" , method = RequestMethod.POST)
 	public ModelAndView sellerSignUpStep3(Seller seller, Errors errors) throws Exception{
