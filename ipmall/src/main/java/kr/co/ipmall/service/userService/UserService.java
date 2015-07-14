@@ -1,5 +1,6 @@
 package kr.co.ipmall.service.userService;
 
+import kr.co.ipmall.vo.Customer;
 import kr.co.ipmall.vo.User;
 
 public interface UserService {
@@ -19,4 +20,5 @@ public interface UserService {
 	void deleteUser(String email) throws Exception;
 	void updateUserInfo(User user) throws Exception;
 	User authenticate(String email, String password) throws Exception;
+	User selectUser(Customer customer);
 }

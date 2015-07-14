@@ -78,7 +78,7 @@ public class UserController {
 			throws Exception {
 		new RegisterRequestValidator().validate(customer, errors);
 		ModelAndView mv;
-		int userNo;
+		User user;
 
 		// //////////////////
 		if (errors.hasErrors()) {
@@ -92,8 +92,8 @@ public class UserController {
 			customer.setStatus(User.ACTIVE);
 
 			userService.insertUser(customer);
-			userNo = userService.selectUserNo();
-			inventoryService.createInventory(customer.getCustomer_no());
+			user = userService.selectUser(customer);
+			inventoryService.createInventory(user.getUser_no());
 			mv = new ModelAndView("/view/index");
 			return mv;
 		} catch (kr.co.ipmall.model.exception.AlreadyExistingUserException ex) {

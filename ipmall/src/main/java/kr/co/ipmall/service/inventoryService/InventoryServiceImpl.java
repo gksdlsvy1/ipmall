@@ -14,7 +14,7 @@ public class InventoryServiceImpl implements InventoryService {
 	@Resource(name="inventoryDAO")
 	private InventoryDAO inventoryDAO;
 	
-	public void createInventory(int customer_no) {
+	public void createInventory(Long customer_no) {
 		inventoryDAO.insert("inventory.insertEmptyInventory", customer_no);
 	}
 

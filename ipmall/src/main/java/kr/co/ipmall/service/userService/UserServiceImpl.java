@@ -91,9 +91,10 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 	
-	public int selectUserNo() {
-		int customerNo = (int) userDAO.selectOne("user.selectUserNo");
-		return customerNo;
+	public User selectUser(Customer customer) {
+		User user;
+		user = (User) userDAO.selectByEmail(customer.getEmail());
+		return customer;
 	}
 
 }
